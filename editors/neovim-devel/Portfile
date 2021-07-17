@@ -2,12 +2,11 @@
 
 PortSystem              1.0
 PortGroup               github 1.0
-# Must use -DCMAKE_BUILD_TYPE=Release
-PortGroup               cmake 1.0
+PortGroup               cmake 1.1
 
-github.setup            neovim neovim b585f723bcbaa10a091fce5a61659b331b1467b9
+github.setup            neovim neovim e43dbfdd05d09e28ee0468f1cd1808f859807606
 name                    neovim-devel
-version                 20210620
+version                 20210709
 revision                0
 categories              editors
 platforms               darwin
@@ -23,9 +22,9 @@ long_description \
 
 homepage                https://neovim.io
 
-checksums               rmd160  568e89b1842b9706078880750cefb2bb1e6b967c \
-                        sha256  d6e4a0e995ce2f3401c73ba787498b07aca2717460921f9c4c9678e985b82eed \
-                        size    10323926
+checksums               rmd160  0d0a3efef321ee0a13af7cd7a57bb6c37a220d6c \
+                        sha256  f29e76bb1387b0e7cfdb7e380481c2d46c703a4aaaa35652b99d0840086e1cf6 \
+                        size    10336818
 
 depends_build-append    port:pkgconfig
 
@@ -42,7 +41,7 @@ depends_lib             port:gettext \
                         port:lua51-mpack \
                         port:luv-luajit
 
-cmake.out_of_source     yes
+cmake.build_type        Release
 
 configure.args-append   -DUSE_BUNDLED=OFF \
                         -DLUA_PRG=${prefix}/bin/luajit

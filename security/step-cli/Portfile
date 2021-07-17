@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/smallstep/cli 0.15.16 v
+go.setup            github.com/smallstep/cli 0.16.1 v
 name                step-cli
 revision            0
 
@@ -25,9 +25,9 @@ installs_libs       no
 # Allow fetching deps at build time
 build.env-delete    GO111MODULE=off GOPROXY=off
 
-checksums           rmd160  262aee46f3437b1f09aa4cb60740b0b07551f658 \
-                    sha256  46cdf32fcaa4ecf070a7d788eaa245f638e4097d0cb15f4548fb152e1720257a \
-                    size    1767835
+checksums           rmd160  9dd0c75087c192e6fecdf9fa022433fbf7d54928 \
+                    sha256  b04281bfe53ec39a4056dd3b199715471ff785e3036e22c49d6197a333ee660c \
+                    size    1794368
 
 build.cmd           make
 build.target        binary-darwin
@@ -37,4 +37,5 @@ destroot {
         ${worksrcpath}/output/binary/darwin/bin/step ${destroot}${prefix}/bin/
 }
 
-github.livecheck.regex {([0-9.]+)}
+github.livecheck.regex  {([0-9.]+)}
+github.tarball_from     archive

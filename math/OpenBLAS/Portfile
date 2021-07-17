@@ -44,11 +44,11 @@ if {![info exists blas_arch]} {
 subport OpenBLAS-devel {}
 if {[string first "-devel" $subport] > 0} {
 
-    github.setup    xianyi OpenBLAS 9f3d90381750685bcfdd339e23bb256fc7fbd288
-    version         20210608-[string range ${github.version} 0 7]
-    checksums       rmd160  3ec287147695aa75c9cc3834e0be1c0b8a42fb6a \
-                    sha256  dc0f0da37c6d36b33452e85166135e04d93dd0aa73c7b54c0cfdfcb84d43aea1 \
-                    size    12506774
+    github.setup    xianyi OpenBLAS d909f9f3d4fc4ccff36d69f178558df154ba1002
+    version         20210715-[string range ${github.version} 0 7]
+    checksums       rmd160  cb4325fc34cd0849829e1180cfe38ba6b3f84fb9 \
+                    sha256  84547c2d9f4aec68acbd56e349362fdb2c6652b431c9eef1140dc419979d8fd6 \
+                    size    12516980
     revision        0
 
     name            ${github.project}-devel
@@ -64,20 +64,16 @@ if {[string first "-devel" $subport] > 0} {
 
 } else {
 
-    github.setup    xianyi OpenBLAS 0.3.15 v
-    checksums       rmd160  8803a1bf4ab61176080a129fd2e8cded8dd90ee6 \
-                    sha256  7a35dd2eb486cae48237c06de04a7794a97fc7fd65b08f60f70e1b2664829efa \
-                    size    12502058
-    revision        5
+    github.setup    xianyi OpenBLAS 0.3.17 v
+    checksums       rmd160  cb4325fc34cd0849829e1180cfe38ba6b3f84fb9 \
+                    sha256  84547c2d9f4aec68acbd56e349362fdb2c6652b431c9eef1140dc419979d8fd6 \
+                    size    12516980
+    revision        0
 
     conflicts       OpenBLAS-devel
 
     patchfiles      patch-libnoarch.release.diff \
                     patch-OpenBLAS-i386-Apple.diff
-
-    # https://github.com/xianyi/OpenBLAS/issues/3222
-    # https://github.com/xianyi/OpenBLAS/pull/3223
-    patchfiles-append 0001-Use-percent-instead-of-ampersand-as-placeholder-for-.patch
 
     if {![variant_isset native]} {
         notes "
