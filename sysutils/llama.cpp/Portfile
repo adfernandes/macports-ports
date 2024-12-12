@@ -5,9 +5,9 @@ PortGroup               github 1.0
 PortGroup               cmake 1.1
 PortGroup               legacysupport 1.1
 
-github.setup            ggerganov llama.cpp 4267 b
+github.setup            ggerganov llama.cpp 4304 b
 github.tarball_from     archive
-set git-commit          f112d19
+set git-commit          484d2f3
 # This line is for displaying commit in CLI only
 revision                0
 categories              sysutils
@@ -19,13 +19,15 @@ long_description        The main goal of llama.cpp is to enable LLM inference wi
                         setup and state-of-the-art performance on a wide variety of hardware\
                          - locally and in the cloud.
 
-checksums               rmd160  0a0d75e0d118079cd2df04e9bf9c761ec8cdf2d0 \
-                        sha256  b54c0602fd22282ee49095740b4b1e9177d5fb4f9f71411179ec7f3f4f8926e9 \
-                        size    19400342
+checksums               rmd160  08619e9fc6457590ce6e7e90ee094f04ed9e75f1 \
+                        sha256  4c597dd3c57155ac39892fe926e81d8ce4c218a485e2db99d76427c941e0c059 \
+                        size    19421084
 
-# clock_gettime
+# error: 'filesystem' file not found on 10.14
 legacysupport.newest_darwin_requires_legacy \
-                        15
+                        18
+legacysupport.use_mp_libcxx \
+                        yes
 
 depends_lib-append      port:curl
 
@@ -41,7 +43,10 @@ configure.args-append   -DGGML_LTO=ON \
                         -DGGML_CCACHE=OFF \
                         -DLLAMA_CURL=ON
 
-if {${os.platform} eq "darwin" && ${os.subplatform} eq "macosx" && ${os.major} > 14} {
+# error: use of undeclared identifier 'MTLGPUFamilyApple7' on 10.14
+
+if {${os.platform} eq "darwin" && ${os.subplatform} eq "macosx" && \
+    (${os.major} >= 20 && ${configure.sdk_version} >= 11)} {
     configure.args-append \
                         -DGGML_METAL=ON \
                         -DGGML_METAL_EMBED_LIBRARY=ON \
