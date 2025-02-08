@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        rbenv ruby-build 20250121 v
+github.setup        rbenv ruby-build 20250205 v
 github.tarball_from archive
 categories          ruby
 license             MIT
@@ -17,9 +17,9 @@ maintainers         {mojca @mojca} \
 description         Compile and install Ruby
 long_description    {*}${description}
 
-checksums           rmd160  5cf3bb23479854cd82a52533efc2950845877a62 \
-                    sha256  8e69b30941913f7aa3cbf9c464a21e4be43120f631f1ad3cc3992cc273b574cc \
-                    size    94174
+checksums           rmd160  562d5968fd53335f6c5109f68ac974900cc3cc5c \
+                    sha256  1ac47d39c32b96be44d81abc3146f46e71d5a89adbb67de4d665f96d15ad1a28 \
+                    size    94953
 
 use_configure       no
 build {}

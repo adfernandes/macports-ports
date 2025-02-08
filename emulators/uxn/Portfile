@@ -5,8 +5,8 @@ PortGroup               sourcehut 1.0
 PortGroup               compiler_blacklist_versions 1.0
 
 name                    uxn
-sourcehut.setup         rabbits uxn c93972cae22be2300d1cade49142546cf162da50
-version                 20241225
+sourcehut.setup         rabbits uxn 5829f7da504f77dbc44037250871befd64da79b3
+version                 20250131
 revision                0
 
 categories              emulators
@@ -23,9 +23,9 @@ long_description        Uxn is a virtual machine with 32 instructions. \
 
 homepage                https://100r.co/site/uxn.html
 
-checksums               rmd160  b91a66ea232e2358df0851638fe3b51a2c540606 \
-                        sha256  dba957fc6cb7b62f9bb8c23f6071a1154f53666e5e8b8832338e24601a61aac2 \
-                        size    306019
+checksums               rmd160  23d9f448016fd0a39c540553682fed96ae903276 \
+                        sha256  4ccdc3c0c8ccc47ac91b63bb8245018a5df22d4f9583ea19cd125eeaa169dffc \
+                        size    301039
 
 depends_lib             port:libsdl2
 

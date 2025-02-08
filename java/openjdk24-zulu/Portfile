@@ -15,7 +15,7 @@ universal_variant no
 supported_archs  x86_64 arm64
 
 # https://www.azul.com/downloads/?version=java-24-ea&os=macos&package=jdk#zulu
-version      ${feature}.0.67
+version      ${feature}.0.77
 revision     0
 
 set openjdk_version ${feature}.0.0
@@ -29,18 +29,18 @@ long_description Azul® Zulu® is a Java Development Kit (JDK), and a compliant 
 master_sites https://cdn.azul.com/zulu/bin/
 
 if {${configure.build_arch} eq "x86_64"} {
-    distname     zulu${version}-beta-jdk${openjdk_version}-beta.29-macosx_x64
-    checksums    rmd160  9ccefde9bfb6c1287897d7926af77bc7c7ddbc16 \
-                 sha256  29287d87b196b538e02de49b2ade68be1bbc596f80f53de1dc198c3cf5b17e28 \
-                 size    224895264
+    distname     zulu${version}-beta-jdk${openjdk_version}-beta.34-macosx_x64
+    checksums    rmd160  595bfbb012255f556bf45b5ef41489384868a68b \
+                 sha256  cff7284aad88dec1afe5931e300b803b1dc987261631f658baf37594e8d03571 \
+                 size    224969512
 } elseif {${configure.build_arch} eq "arm64"} {
     # No .tar.gz (yet?) for arm64
     use_zip yes
 
-    distname     zulu${version}-beta-jdk${openjdk_version}-beta.29-macosx_aarch64
-    checksums    rmd160  caca2b7448206cd903feeab8f64a4ca573076af3 \
-                 sha256  67f1c307548fd58f9c250815c34332faa044690766c20da8f9de53f56bb193ca \
-                 size    225948005
+    distname     zulu${version}-beta-jdk${openjdk_version}-beta.34-macosx_aarch64
+    checksums    rmd160  fa6b17ae6b83b842a94420ebea7d177c0466b2bd \
+                 sha256  5bd8fee8257ce34566da3c79b9d962de9051f291b6fd5002b37c946ac924e06f \
+                 size    226015246
 }
 
 worksrcdir   ${distname}/zulu-${feature}.jdk

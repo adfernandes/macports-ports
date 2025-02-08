@@ -5,8 +5,9 @@ PortGroup           compilers 1.0
 PortGroup           active_variants 1.1
 
 name                gildas
-version             202501a
+version             202502b
 set my_version      [string tolower [clock format [clock scan 2000-[string range ${version} 4 5]-10] -format %b]][string range ${version} 2 3][string range ${version} 6 end]
+revision            1
 
 supported_archs     arm64 x86_64
 categories          science
@@ -31,21 +32,19 @@ master_sites        https://www.iram.fr/~gildas/dist/ \
 distname            ${name}-src-${my_version}
 use_xz              yes
 
-checksums           rmd160  0a8547885911553d5bfd371ec7c751a703d7af30 \
-                    sha256  8fd4224351bfc424699ad943d574ad755bcc6168212d886bb32b0e7532c9e487 \
-                    size    46401688
+checksums           rmd160  92994e93a681391a7bfb2eea6b40fd219eded9a9 \
+                    sha256  64bc487d47cfc81e36b9eac763597b73fbc442d987e2a95c293c5d786b73e719 \
+                    size    47160356
 
 patch.pre_args-replace  -p0 -p1
 patchfiles          patch-admin-Makefile.def.diff \
-                    patch-admin-Makefile.python.diff \
-                    patch-admin-Makefile.build.diff \
                     patch-admin-gildas-env.sh.diff \
-                    patch-admin-define-system.sh.diff \
-                    patch-admin-python-config-ldflags.py.diff
+                    patch-admin-define-system.sh.diff
 
 depends_lib         path:lib/pkgconfig/gtk+-2.0.pc:gtk2 \
                     port:libpng \
                     port:python313 \
+                    port:py313-setuptools \
                     port:py313-numpy
 
 # coreutils needed to use GNU gsort instead of native BSD sort as older version
@@ -85,7 +84,7 @@ configure {
     reinplace -W ${worksrcpath}/admin "s|@CPP@|${configure.cpp}|g" Makefile.def define-system.sh
     reinplace -W ${worksrcpath}/admin "s|@CPPFLAGS@|${configure.cppflags}|g" Makefile.def
     reinplace -W ${worksrcpath}/admin "s|@LDFLAGS@|${configure.ldflags}|g" Makefile.def
-    reinplace -W ${worksrcpath}/admin "s|@PYTHON@|${configure.python}|g" Makefile.build Makefile.def Makefile.python gildas-env.sh python-config-ldflags.py
+    reinplace -W ${worksrcpath}/admin "s|@PYTHON@|${configure.python}|g" define-system.sh
 }
 
 build {
@@ -104,7 +103,6 @@ destroot {
 
     xinstall ${filespath}/astro.in ${destroot}${prefix}/bin/astro
     xinstall ${filespath}/class.in ${destroot}${prefix}/bin/class
-    xinstall ${filespath}/clic.in ${destroot}${prefix}/bin/clic
     xinstall ${filespath}/cube.in ${destroot}${prefix}/bin/cube
     xinstall ${filespath}/greg.in ${destroot}${prefix}/bin/greg
     xinstall ${filespath}/mapping.in ${destroot}${prefix}/bin/mapping
@@ -116,8 +114,8 @@ destroot {
     set my_machine   [if {[string match *arm* ${os.arch}]} {list arm64} {list x86_64}]
     set my_env_vers  [string tolower [exec sw_vers -productName | tr -d " "]]
 
-    reinplace -W ${destroot}${prefix}/bin s|@PREFIX@|${prefix}|g astro class clic cube greg mapping mira mrtcal sic sched-30m
-    reinplace -W ${destroot}${prefix}/bin s|@ARCH@|${my_machine}|g astro class clic cube greg mapping mira mrtcal sic sched-30m
-    reinplace -W ${destroot}${prefix}/bin s|@OSNAME@|${my_env_vers}|g astro class clic cube greg mapping mira mrtcal sic sched-30m
+    reinplace -W ${destroot}${prefix}/bin s|@PREFIX@|${prefix}|g astro class cube greg mapping mira mrtcal sic sched-30m
+    reinplace -W ${destroot}${prefix}/bin s|@ARCH@|${my_machine}|g astro class cube greg mapping mira mrtcal sic sched-30m
+    reinplace -W ${destroot}${prefix}/bin s|@OSNAME@|${my_env_vers}|g astro class cube greg mapping mira mrtcal sic sched-30m
 
 }
