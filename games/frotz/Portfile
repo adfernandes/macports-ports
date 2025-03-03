@@ -33,7 +33,7 @@ build.env           PREFIX=${prefix} \
                     NO_UCONTEXT_H=1
 
 if {${os.platform} eq "darwin" && ${os.major} <= 10} {
-    build.env-append    NO_STRDUP=yes
+    build.env-append    NO_STRNDUP=yes
 }
 
 if {$subport eq $name} {
@@ -64,6 +64,7 @@ subport frotz-sdl {
                         port:libsdl2 \
                         port:libsdl2_mixer \
                         port:zlib
+    patchfiles-append   sdl_Makefile.patch
     build.target    sdl
     destroot.target install-sdl
 }
