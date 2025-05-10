@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-narwhals
-version             1.36.0
+version             1.38.2
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -13,9 +13,12 @@ description         Extremely lightweight and extensible compatibility layer bet
 long_description    {*}${description}
 homepage            https://github.com/narwhals-dev/narwhals
 
-checksums           rmd160  160e7441d2ae86ede0fc74a5f4967a82b072ba54 \
-                    sha256  7cd860e7e066609bd8a042bb5b8e4193275532114448210a91cbd5c622b6e5eb \
-                    size    270385
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  61f25d98224232e437957dd7a35d5ea77d582b5c \
+                    sha256  7c5fbc9f2b8e1d5d95f49dcef9c2d94bf17810de68c87ff195dc7d22f7b3eeb5 \
+                    size    277368
 
 python.versions     39 310 311 312 313
 
